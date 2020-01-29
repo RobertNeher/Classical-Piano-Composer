@@ -30,6 +30,10 @@ def get_notes():
     """ Get all the notes and chords from the midi files in the ./midi_songs directory """
     notes = []
 
+    # skip score parsing, if already performed
+    if os.path.exists('data/notes'):
+        return= pickle.read('data/notes')
+
     for file in glob.glob("midi_songs/*.mid"):
         midi = converter.parse(file)
 
